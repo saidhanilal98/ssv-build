@@ -1,10 +1,10 @@
-import FadeIn from "./Home/FadeIn";
-import Hero from "./Home/Hero";
-import Statistics from "./Home/Statistics";
-import Services from "./Home/Services";
-import Projects from "./Home/Projects";
-import Testimonials from "./Home/Testimonials";
-import Methods from "./Home/Methods";
+import FadeIn from "./home/FadeIn";
+import Hero from "./home/Hero";
+import Statistics from "./home/Statistics";
+import Services from "./home/Services";
+import Projects from "./home/Projects";
+import Testimonials from "./home/Testimonials";
+import Methods from "./home/Methods";
 
 
 
@@ -14,11 +14,11 @@ export default function Home() {
       <FadeIn>
         <Hero />
       </FadeIn>
-       <Statistics />
-       <Services />
-       <Projects />
-       <Testimonials />
-       <Methods />
+      <Statistics />
+      <Services />
+      <Projects />
+      <Testimonials />
+      <Methods />
     </main>
 
 

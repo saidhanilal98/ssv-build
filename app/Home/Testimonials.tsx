@@ -1,21 +1,8 @@
 "use client";
 
-import Image from "next/image";
-
 export default function Testimonials() {
     return (
-        <section className="relative overflow-hidden bg-black px-6 py-20 lg:px-8">
-
-            {/* Background Image */}
-            <Image
-                src="/testimonial-background.jpg"
-                alt=""
-                fill
-                className="object-cover"
-            />
-
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/40" />
+        <section className=" bg-black px-6 py-20 lg:px-8">
 
             {/* Content */}
             <div className="relative mx-auto max-w-7xl">
