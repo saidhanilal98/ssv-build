@@ -88,7 +88,6 @@ export default function Header() {
                   h-px
                   w-0
                   bg-[#0CC0DF]
-                  shadow-[0_0_8px_#0CC0DF]
                   transition-all
                   duration-300
                   group-hover:w-full

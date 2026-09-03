@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import FadeIn from "./FadeIn";
 import {
     Building2,
     Wrench,
@@ -73,7 +74,7 @@ export default function Hero() {
                 <div className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
 
                     {/* LEFT — INTRO */}
-                    <div className="flex flex-col justify-end animate-fade-in">
+                    <FadeIn className="flex flex-col justify-end">
 
                         <div className="max-w-md">
 
@@ -129,15 +130,14 @@ export default function Hero() {
 
                         </div>
 
-                    </div>
+                    </FadeIn>
 
                     {/* RIGHT — SERVICES */}
-                    <div
+                    <FadeIn
                         className="
                             flex
                             flex-col
                             justify-start
-                            animate-fade-in-delayed
                         "
                     >
 
@@ -219,7 +219,7 @@ export default function Hero() {
 
                         </div>
 
-                    </div>
+                    </FadeIn>
 
                 </div>
 

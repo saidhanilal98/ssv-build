@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import FadeIn from "./FadeIn";
 
 export default function Hero() {
     return (
@@ -54,7 +55,7 @@ export default function Hero() {
                         <div>
 
                             {/* Heading */}
-                            <div className="max-w-4xl animate-fade-in">
+                            <FadeIn className="max-w-4xl">
 
                                 <h1
                                     className="
@@ -78,14 +79,13 @@ export default function Hero() {
                                     </span>
                                 </h1>
 
-                            </div>
+                            </FadeIn>
 
                             {/* Main content */}
-                            <div
+                            <FadeIn
                                 className="
                                     mt-12
                                     max-w-3xl
-                                    animate-fade-in-delayed
                                 "
                             >
 
@@ -177,7 +177,7 @@ export default function Hero() {
 
                                 </div>
 
-                            </div>
+                            </FadeIn>
 
                         </div>
 
@@ -191,13 +191,12 @@ export default function Hero() {
                             "
                         >
 
-                            <div
+                            <FadeIn
                                 className="
                                     w-full
                                     border-l
                                     border-[#0CC0DF]/60
                                     pl-7
-                                    animate-fade-in-delayed
                                 "
                             >
 
@@ -323,7 +322,7 @@ export default function Hero() {
 
                                 </div>
 
-                            </div>
+                            </FadeIn>
 
                         </div>
 
@@ -332,7 +331,7 @@ export default function Hero() {
                 </div>
 
             </div>
-            
+
         </section>
     );
 }

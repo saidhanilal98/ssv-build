@@ -1,8 +1,38 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import { Plus } from "lucide-react";
+
+const methods = [
+    {
+        title: "Extensive Experience",
+        description: "Over 30+ years expertise and sustainable success.",
+    },
+    {
+        title: "Qualified Team",
+        description:
+            "A dedicated team that delivers exceptional results on every project.",
+    },
+    {
+        title: "Superior Quality",
+        description:
+            "We offer expert workmanship, premium materials, and meticulous attention to detail.",
+    },
+    {
+        title: "Reliable & Committed",
+        description:
+            "Our commitment to delivering dependable services, consistent quality, and trust.",
+    },
+];
 
 export default function Methods() {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    const toggle = (index: number) => {
+        setOpenIndex((prev) => (prev === index ? null : index));
+    };
+
     return (
         <section className="mx-auto">
             <div className="grid grid-cols-1 items-stretch md:grid-cols-2">
@@ -51,54 +81,56 @@ export default function Methods() {
                         </span>
                     </h2>
 
-                    <ul className="py-10 space-y-4">
-                        <li className="flex items-start">
-                            <span className="text-[#0CC0DF] mr-2 font-bold">•</span>
-                            <div>
-                                <strong className="text-black text-lg block">
-                                    Extensive Experience
-                                </strong>
-                                <span className="text-gray-600 text-md">
-                                    Over 30+ years expertise and sustainable success.
-                                </span>
-                            </div>
-                        </li>
+                    <ul className="mt-10">
+                        {methods.map((method, index) => {
+                            const isOpen = openIndex === index;
 
-                        <li className="flex items-start">
-                            <span className="text-[#0CC0DF] mr-2 font-bold">•</span>
-                            <div>
-                                <strong className="text-black text-lg block">
-                                    Qualified Team
-                                </strong>
-                                <span className="text-gray-600 text-md">
-                                    A dedicated team that delivers exceptional results on every project.
-                                </span>
-                            </div>
-                        </li>
+                            return (
+                                <li key={method.title} className="border-b border-black/10">
+                                    <button
+                                        type="button"
+                                        onClick={() => toggle(index)}
+                                        aria-expanded={isOpen}
+                                        className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                                    >
+                                        <strong className="text-black text-lg">
+                                            {method.title}
+                                        </strong>
 
-                        <li className="flex items-start">
-                            <span className="text-[#0CC0DF] mr-2 font-bold">•</span>
-                            <div>
-                                <strong className="text-black text-lg block">
-                                    Superior Quality
-                                </strong>
-                                <span className="text-gray-600 text-md">
-                                    We offer expert workmanship, premium materials, and meticulous attention to detail.
-                                </span>
-                            </div>
-                        </li>
+                                        <span
+                                            className={`
+                                                flex
+                                                h-8
+                                                w-8
+                                                shrink-0
+                                                items-center
+                                                justify-center
+                                                rounded-full
+                                                border
+                                                border-[#0CC0DF]
+                                                text-[#0CC0DF]
+                                                transition-transform
+                                                duration-300
+                                                ${isOpen ? "rotate-45" : ""}
+                                            `}
+                                        >
+                                            <Plus size={16} strokeWidth={2} />
+                                        </span>
+                                    </button>
 
-                        <li className="flex items-start">
-                            <span className="text-[#0CC0DF] mr-2 font-bold">•</span>
-                            <div>
-                                <strong className="text-black text-lg block">
-                                    Reliable & Committed
-                                </strong>
-                                <span className="text-gray-600 text-md">
-                                    Our commitment to delivering dependable services, consistent quality, and trust.
-                                </span>
-                            </div>
-                        </li>
+                                    <div
+                                        className="grid overflow-hidden transition-all duration-300 ease-out"
+                                        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                                    >
+                                        <div className="overflow-hidden">
+                                            <span className="block pb-6 text-gray-600 text-md">
+                                                {method.description}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
 
