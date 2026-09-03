@@ -37,7 +37,7 @@ export default function Header() {
                     onClick={() => setOpen(false)}
                 >
                     <Image
-                        src="/ssv-logo.png"
+                        src="/ssv-logo.webp"
                         alt="SSV Logo"
                         width={165}
                         height={55}
