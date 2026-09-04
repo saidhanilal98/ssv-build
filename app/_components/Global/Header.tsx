@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const navLinks = [
@@ -12,9 +12,22 @@ const navLinks = [
 
 export default function Header() {
     const [open, setOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 20);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
     return (
-        <header className="absolute left-0 top-0 z-50 w-full bg-transparent">
+        <header
+            className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${scrolled
+                    ? "bg-black/80 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.08)]"
+                    : "bg-transparent"
+                }`}
+        >
 
             <nav
                 className="
@@ -110,7 +123,6 @@ export default function Header() {
               transition-all
               duration-300
               hover:bg-white
-              hover:shadow-[0_0_25px_rgba(12,192,223,0.35)]
             "
                     >
                         Contact Us

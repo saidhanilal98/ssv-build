@@ -23,3 +23,20 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
 }
+
+html {
+  scrollbar-color: #0CC0DF transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0CC0DF;
+  border-radius: 9999px;
+}

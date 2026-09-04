@@ -5,10 +5,7 @@ import Link from "next/link";
 import FadeIn from "./FadeIn";
 import {
     Building2,
-    Wrench,
-    Settings,
     ClipboardCheck,
-    Hammer,
     CloudRain,
     FenceIcon,
 } from "lucide-react";
