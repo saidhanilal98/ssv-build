@@ -73,8 +73,8 @@ export default function Methods() {
                 </div>
 
                 {/* Column 2 */}
-                <div className="bg-white p-20 h-full border border-white">
-                    <h2 className="mt-4 text-4xl font-bold uppercase tracking-tight sm:text-5xl lg:text-6xl text-black">
+                <div className="bg-white p-8 h-full border border-white sm:p-10 md:p-8 lg:p-16 xl:p-20">
+                    <h2 className="mt-4 wrap-break-word text-4xl font-bold uppercase tracking-tight sm:text-5xl lg:text-6xl text-black">
                         OPTIMAL METHODS{" "}
                         <span className="text-[#0CC0DF]">
                             WE ACCOMPLISH.

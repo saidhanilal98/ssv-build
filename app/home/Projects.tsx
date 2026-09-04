@@ -61,7 +61,7 @@ export default function Projects() {
                 {/* Slider */}
                 <div className="relative mt-20 overflow-hidden">
 
-                    <div className="relative h-[550px] w-full">
+                    <div className="relative aspect-video w-full lg:aspect-auto lg:h-137.5">
 
                         {/* Project Image */}
                         <Image
