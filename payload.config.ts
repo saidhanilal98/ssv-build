@@ -8,6 +8,10 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Services } from './collections/Services'
+import { Projects } from './collections/Projects'
+import { Testimonials } from './collections/Testimonials'
+import { Certifications } from './collections/Certifications'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -16,7 +20,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Services, Projects, Testimonials, Certifications],
   globals: [],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
