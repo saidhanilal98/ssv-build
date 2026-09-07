@@ -72,9 +72,6 @@ export default function Hero() {
 
             <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
-                {/* Top metadata */}
-                <div className="border-b border-white/10 py-7" />
-
                 {/* Main hero */}
                 <div className="grid min-h-[610px] grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
 

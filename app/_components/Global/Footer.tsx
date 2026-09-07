@@ -76,8 +76,8 @@ export default function Footer() {
                             <Image
                                 src="/ssv-logo.webp"
                                 alt="SSV Property Group"
-                                width={120}
-                                height={120}
+                                width={300}
+                                height={300}
                                 className="h-auto w-50 object-contain"
                             />
                         </div>
