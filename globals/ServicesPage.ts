@@ -14,6 +14,19 @@ export const ServicesPage: GlobalConfig = {
         { name: 'description', type: 'textarea', required: true },
         { name: 'ctaLabel', type: 'text', required: true },
         { name: 'backgroundImage', type: 'upload', relationTo: 'media', required: true },
+        {
+          name: 'serviceItems',
+          type: 'array',
+          fields: [
+            { name: 'label', type: 'text', required: true },
+            {
+              name: 'icon',
+              type: 'select',
+              required: true,
+              options: ['Building2', 'Wrench', 'ClipboardCheck', 'FenceIcon', 'CloudRain'],
+            },
+          ],
+        },
       ],
     },
     {

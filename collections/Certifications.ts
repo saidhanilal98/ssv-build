@@ -12,7 +12,7 @@ export const Certifications: CollectionConfig = {
   fields: [
     { name: 'title', type: 'text', required: true },
     { name: 'description', type: 'textarea', required: true },
-    { name: 'document', type: 'upload', relationTo: 'media', required: true },
+    { name: 'document', type: 'upload', relationTo: 'media' },
     { name: 'order', type: 'number', defaultValue: 0, admin: { position: 'sidebar' } },
   ],
 }

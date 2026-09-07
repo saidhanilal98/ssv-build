@@ -63,6 +63,7 @@ export const HomePage: GlobalConfig = {
         { name: 'heading', type: 'text', required: true },
         { name: 'description', type: 'textarea', required: true },
         { name: 'ctaLabel', type: 'text', required: true },
+        { name: 'itemsHeading', type: 'text', required: true },
         {
           name: 'items',
           type: 'array',
