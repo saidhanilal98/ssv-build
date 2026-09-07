@@ -12,6 +12,12 @@ import { Services } from './collections/Services'
 import { Projects } from './collections/Projects'
 import { Testimonials } from './collections/Testimonials'
 import { Certifications } from './collections/Certifications'
+import { Header } from './globals/Header'
+import { Footer } from './globals/Footer'
+import { HomePage } from './globals/HomePage'
+import { AboutPage } from './globals/AboutPage'
+import { ServicesPage } from './globals/ServicesPage'
+import { ContactPage } from './globals/ContactPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,7 +27,7 @@ export default buildConfig({
     user: Users.slug,
   },
   collections: [Users, Media, Services, Projects, Testimonials, Certifications],
-  globals: [],
+  globals: [Header, Footer, HomePage, AboutPage, ServicesPage, ContactPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
