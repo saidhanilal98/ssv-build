@@ -24,7 +24,7 @@ async function fetchServices(): Promise<ServiceItem[]> {
     icon: doc.icon,
     shortDescription: doc.shortDescription,
     description: doc.description,
-    features: (doc.features || []).map((entry) => entry.text),
+    features: (doc.features || []).map((entry: { text: string }) => entry.text),
     showOnHomePage: doc.showOnHomePage ?? true,
   }))
 }
