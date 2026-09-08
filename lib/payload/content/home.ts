@@ -151,7 +151,8 @@ export async function getHomePageContent(): Promise<HomePageContent> {
   try {
     const cached = unstable_cache(fetchHomePageContent, ['home-page-content'], { tags: ['home'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getHomePageContent] failed:', error)
     return homePageDefaults
   }
 }

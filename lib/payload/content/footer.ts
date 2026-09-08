@@ -56,7 +56,8 @@ export async function getFooterContent(): Promise<FooterContent> {
   try {
     const cached = unstable_cache(fetchFooterContent, ['footer-content'], { tags: ['layout'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getFooterContent] failed:', error)
     return footerDefaults
   }
 }

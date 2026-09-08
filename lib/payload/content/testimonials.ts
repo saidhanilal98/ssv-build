@@ -25,7 +25,8 @@ export async function getTestimonials(): Promise<TestimonialItem[]> {
   try {
     const cached = unstable_cache(fetchTestimonials, ['testimonials-list'], { tags: ['testimonials'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getTestimonials] failed:', error)
     return []
   }
 }

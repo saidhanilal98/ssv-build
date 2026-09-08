@@ -33,7 +33,8 @@ export async function getServices(): Promise<ServiceItem[]> {
   try {
     const cached = unstable_cache(fetchServices, ['services-list'], { tags: ['services'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getServices] failed:', error)
     return []
   }
 }

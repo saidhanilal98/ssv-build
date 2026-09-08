@@ -199,7 +199,8 @@ export async function getAboutPageContent(): Promise<AboutPageContent> {
   try {
     const cached = unstable_cache(fetchAboutPageContent, ['about-page-content'], { tags: ['about'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getAboutPageContent] failed:', error)
     return aboutPageDefaults
   }
 }

@@ -36,7 +36,8 @@ export async function getHeaderContent(): Promise<HeaderContent> {
   try {
     const cached = unstable_cache(fetchHeaderContent, ['header-content'], { tags: ['layout'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getHeaderContent] failed:', error)
     return headerDefaults
   }
 }

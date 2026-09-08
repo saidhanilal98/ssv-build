@@ -71,7 +71,8 @@ export async function getServicesPageContent(): Promise<ServicesPageContent> {
   try {
     const cached = unstable_cache(fetchServicesPageContent, ['services-page-content'], { tags: ['services-page'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getServicesPageContent] failed:', error)
     return servicesPageDefaults
   }
 }

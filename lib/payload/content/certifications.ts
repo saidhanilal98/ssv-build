@@ -27,7 +27,8 @@ export async function getCertifications(): Promise<CertificationItem[]> {
   try {
     const cached = unstable_cache(fetchCertifications, ['certifications-list'], { tags: ['certifications'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getCertifications] failed:', error)
     return []
   }
 }

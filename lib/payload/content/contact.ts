@@ -67,7 +67,8 @@ export async function getContactPageContent(): Promise<ContactPageContent> {
   try {
     const cached = unstable_cache(fetchContactPageContent, ['contact-page-content'], { tags: ['contact'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getContactPageContent] failed:', error)
     return contactPageDefaults
   }
 }

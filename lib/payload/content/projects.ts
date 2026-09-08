@@ -26,7 +26,8 @@ export async function getProjects(): Promise<ProjectItem[]> {
   try {
     const cached = unstable_cache(fetchProjects, ['projects-list'], { tags: ['projects'] })
     return await cached()
-  } catch {
+  } catch (error) {
+    console.error('[getProjects] failed:', error)
     return []
   }
 }
