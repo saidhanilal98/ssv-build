@@ -1,6 +1,7 @@
 import { unstable_cache } from 'next/cache'
 import { getPayloadClient } from '../getPayloadClient'
 import { mapMedia, type MediaContent } from './media'
+import { headerDefaults } from './defaults'
 
 export type HeaderContent = {
   logo: MediaContent
@@ -8,15 +9,7 @@ export type HeaderContent = {
   ctaLabel: string
 }
 
-const headerDefaults: HeaderContent = {
-  logo: { url: '/ssv-logo.webp', alt: 'SSV Logo' },
-  navLinks: [
-    { label: 'Home', href: '/' },
-    { label: 'About Us', href: '/about' },
-    { label: 'Services', href: '/services' },
-  ],
-  ctaLabel: 'Contact Us',
-}
+export { headerDefaults }
 
 async function fetchHeaderContent(): Promise<HeaderContent> {
   const payload = await getPayloadClient()

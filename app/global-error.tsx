@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import "./(frontend)/globals.css";
+import Header from "./(frontend)/_components/Global/Header";
+import Footer from "./(frontend)/_components/Global/Footer";
+import { headerDefaults, footerDefaults } from "../lib/payload/content/defaults";
 
 export default function GlobalError({
     retry,
@@ -13,7 +16,9 @@ export default function GlobalError({
     return (
         <html lang="en">
             <body className="antialiased">
-                <main className="relative flex min-h-screen overflow-hidden bg-[#062133] text-white">
+                <Header {...headerDefaults} />
+
+                <main className="relative flex overflow-hidden bg-[#062133] pt-28 pb-12 text-white">
 
                     {/* Architectural grid */}
                     <div
@@ -74,26 +79,10 @@ export default function GlobalError({
                 "
                     />
 
-                    <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 sm:px-10 lg:px-16">
-
-                        {/* Header */}
-                        <header className="flex items-center justify-between border-b border-white/10 py-7">
-
-                            <Link
-                                href="/"
-                                className="text-sm font-bold uppercase tracking-[0.2em] transition-colors duration-300 hover:text-[#0CC0DF]"
-                            >
-                                SSV Property Group
-                            </Link>
-
-                            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30">
-                                Something went wrong
-                            </span>
-
-                        </header>
+                    <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-6 sm:px-10 lg:px-16">
 
                         {/* Main */}
-                        <div className="flex flex-1 items-center justify-center py-20">
+                        <div className="flex flex-1 items-center justify-center py-8 lg:mt-20">
 
                             <div className="relative w-full max-w-5xl text-center">
 
@@ -107,7 +96,7 @@ export default function GlobalError({
 
                                     <div className="h-px flex-1 bg-white/10" />
 
-                                    <span className="h-2 w-2 rounded-full bg-[#0CC0DF] shadow-[0_0_15px_rgba(12,192,223,0.8)]" />
+                                    <span className="h-2 w-2 rounded-full bg-[#0CC0DF]" />
 
                                     <div className="h-px flex-1 bg-white/10" />
 
@@ -187,11 +176,6 @@ export default function GlobalError({
 
                                         Back To Home
 
-                                        <ArrowUpRight
-                                            size={16}
-                                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                                        />
-
                                     </Link>
 
                                 </div>
@@ -199,27 +183,11 @@ export default function GlobalError({
                             </div>
 
                         </div>
-
-                        {/* Footer */}
-                        <footer className="border-t border-white/10 py-6">
-
-                            <div className="flex flex-col items-center justify-between gap-3 text-[10px] uppercase tracking-[0.25em] text-white/30 sm:flex-row">
-
-                                <span>
-                                    SSV Property Group
-                                </span>
-
-                                <span>
-                                    Property. Managed Better.
-                                </span>
-
-                            </div>
-
-                        </footer>
-
                     </div>
 
                 </main>
+
+                <Footer {...footerDefaults} />
             </body>
         </html>
     );
