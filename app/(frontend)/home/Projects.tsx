@@ -3,24 +3,18 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { ProjectItem } from "../../../lib/payload/content/projects";
 
-const projects = [
-    {
-        image: "/projects/ssv-project-1.png",
-    },
-    {
-        image: "/projects/ssv-project-2.png",
-    },
-    {
-        image: "/projects/ssv-project-3.png",
-    },
-    {
-        image: "/projects/ssv-project-4.png",
-    },
-];
+type ProjectsProps = {
+    heading: string;
+    description: string;
+    projects: ProjectItem[];
+};
 
-export default function Projects() {
+export default function Projects({ heading, description, projects }: ProjectsProps) {
     const [current, setCurrent] = useState(0);
+
+    if (projects.length === 0) return null;
 
     const nextSlide = () => {
         setCurrent((prev) => (prev + 1) % projects.length);
@@ -42,15 +36,11 @@ export default function Projects() {
                     <div>
 
                         <h2 className="mt-4 text-4xl font-bold uppercase tracking-tight sm:text-5xl lg:text-6xl">
-                            Some Projects We are{" "}
-                            <span className="text-[#0CC0DF]">
-                                Proud Of.
-                            </span>
+                            {heading}
                         </h2>
 
                         <p className="mt-4 max-w-2xl text-white">
-                            Explore some of our completed projects, showcasing quality workmanship, attention to detail,
-                            and exceptional results.
+                            {description}
                         </p>
 
                         <div className="mt-6 h-px w-16 bg-[#0CC0DF]" />
@@ -65,9 +55,9 @@ export default function Projects() {
 
                         {/* Project Image */}
                         <Image
-                            key={project.image}
-                            alt=''
-                            src={project.image}
+                            key={project.image.url}
+                            alt={project.image.alt}
+                            src={project.image.url}
                             fill
                             className="
                 object-cover

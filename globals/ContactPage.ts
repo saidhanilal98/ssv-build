@@ -9,7 +9,8 @@ export const ContactPage: GlobalConfig = {
       type: 'group',
       fields: [
         { name: 'eyebrow', type: 'text', required: true },
-        { name: 'heading', type: 'text', required: true },
+        { name: 'headingLine1', type: 'text', required: true },
+        { name: 'headingLine2Highlighted', type: 'text', required: true },
         { name: 'tagline', type: 'text', required: true },
       ],
     },
@@ -17,7 +18,8 @@ export const ContactPage: GlobalConfig = {
       name: 'details',
       type: 'group',
       fields: [
-        { name: 'heading', type: 'text', required: true },
+        { name: 'headingLine1', type: 'text', required: true },
+        { name: 'headingLine2Highlighted', type: 'text', required: true },
         { name: 'description', type: 'textarea', required: true },
         { name: 'email', type: 'email', required: true },
         { name: 'phone', type: 'text', required: true },

@@ -3,6 +3,8 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Global/Header";
 import Footer from "./_components/Global/Footer";
+import { getHeaderContent } from "../../lib/payload/content/header";
+import { getFooterContent } from "../../lib/payload/content/footer";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -14,11 +16,13 @@ export const metadata: Metadata = {
   description: "SSV Rebuild",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [header, footer] = await Promise.all([getHeaderContent(), getFooterContent()]);
+
   return (
     <html
       lang="en"
@@ -27,11 +31,11 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
 
-        <Header />
+        <Header {...header} />
 
         {children}
 
-        <Footer />
+        <Footer {...footer} />
 
 
       </body>

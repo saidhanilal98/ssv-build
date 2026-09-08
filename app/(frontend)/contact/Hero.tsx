@@ -2,14 +2,14 @@
 
 import FadeIn from "./FadeIn";
 
-export default function Hero() {
-    const services = [
-        "Property Maintenance",
-        "Inspections",
-        "Damage Mitigation",
-        "Reinstatement",
-    ];
+type HeroProps = {
+    eyebrow: string;
+    headingLine1: string;
+    headingLine2Highlighted: string;
+    tagline: string;
+};
 
+export default function Hero({ eyebrow, headingLine1, headingLine2Highlighted, tagline }: HeroProps) {
     return (
         <section className="relative min-h-[720px] overflow-hidden bg-[#062133] text-white">
 
@@ -76,11 +76,11 @@ export default function Hero() {
                 <div className="grid min-h-[610px] grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
 
                     {/* Left typography */}
-                    <div className="relative z-10 py-20 text-center lg:col-span-7 lg:col-start-4 lg:py-28">
+                    <div className="relative z-10 py-20 text-center lg:col-span-7 lg:col-start-4 lg:py-28 lg:mt-16">
 
                         <FadeIn>
                             <p className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-[#0CC0DF]">
-                                Let us talk property
+                                {eyebrow}
                             </p>
 
                             <h1
@@ -92,11 +92,11 @@ export default function Hero() {
                                 tracking-[-0.06em]
                             "
                             >
-                                CONTACT
+                                {headingLine1}
                                 <br />
 
                                 <span className="text-[#0CC0DF]">
-                                    US<span className="text-white">.</span>
+                                    {headingLine2Highlighted}
                                 </span>
                             </h1>
 
@@ -104,7 +104,7 @@ export default function Hero() {
                             <div className="mt-12 flex items-center justify-center gap-5">
 
                                 <span className="text-xs uppercase tracking-[0.25em] text-white">
-                                    Property advice and services when you need it.
+                                    {tagline}
                                 </span>
 
                             </div>

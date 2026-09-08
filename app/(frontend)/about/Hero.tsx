@@ -4,14 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "./FadeIn";
 
-export default function Hero() {
+type HeroProps = {
+    heading: string;
+    subheading: string;
+    paragraphs: string[];
+    ctaLabel: string;
+    backgroundImage: { url: string; alt: string };
+    philosophyItems: { title: string; description: string }[];
+};
+
+export default function Hero({ heading, subheading, paragraphs, ctaLabel, backgroundImage, philosophyItems }: HeroProps) {
     return (
         <section className="relative min-h-screen overflow-hidden bg-black text-white">
 
             {/* Background */}
             <Image
-                src="/about-hero.jpg"
-                alt=""
+                src={backgroundImage.url}
+                alt={backgroundImage.alt}
                 fill
                 priority
                 className="object-cover"
@@ -69,14 +78,7 @@ export default function Hero() {
                                         xl:text-[8rem]
                                     "
                                 >
-                                    THE SSV
-                                    <br />
-                                    <span className="text-white/90">
-                                        DIFFERENCE
-                                        <span className="text-[#0CC0DF]">
-                                            .
-                                        </span>
-                                    </span>
+                                    {heading}
                                 </h1>
 
                             </FadeIn>
@@ -100,10 +102,7 @@ export default function Hero() {
                                         lg:text-4xl
                                     "
                                 >
-                                    Property solutions built on{" "}
-                                    <span className="text-[#0CC0DF]">
-                                        trust, quality and vision.
-                                    </span>
+                                    {subheading}
                                 </h2>
 
                                 {/* Divider */}
@@ -112,37 +111,14 @@ export default function Hero() {
                                 {/* Description */}
                                 <div className="mt-6 max-w-2xl">
 
-                                    <p className="text-sm leading-7 text-white sm:text-base">
-                                        At SSV Property Group Ltd, we do not just
-                                        manage and maintain properties, we build
-                                        relationships and protect investments.
-                                        Founded as a family business, our core
-                                        philosophy is simple: treat every property
-                                        as if it were our own and every client as
-                                        part of our family. Our story began not in
-                                        a large corporate boardroom, but within
-                                        our own community.
-                                    </p>
-
-                                    <p className="mt-6 text-sm leading-7 text-white sm:text-base">
-                                        We saw a need for property services that
-                                        combined professional expertise with a
-                                        personal touch where your call is answered
-                                        by a person who knows your name and your
-                                        property’s history. That vision became the
-                                        foundation of SSV Property Group.
-                                    </p>
-
-                                    <p className="mt-6 text-sm leading-7 text-white sm:text-base">
-                                        Today, we remain a family-owned and operated
-                                        business. This means the values we started
-                                        with are the values we operate by every day:
-                                        integrity, reliability, and a relentless
-                                        commitment to quality. For us, it’s not just
-                                        about completing a job, it’s about building
-                                        a legacy of trust, one satisfied client at
-                                        a time.
-                                    </p>
+                                    {paragraphs.map((paragraph, index) => (
+                                        <p
+                                            key={index}
+                                            className="mt-6 text-sm leading-7 text-white sm:text-base first:mt-0"
+                                        >
+                                            {paragraph}
+                                        </p>
+                                    ))}
 
                                     {/* CTA */}
                                     <Link
@@ -168,7 +144,7 @@ export default function Hero() {
                                             hover:shadow-[0_0_30px_rgba(12,192,223,0.35)]
                                         "
                                     >
-                                        JOIN THE DIFFERENCE
+                                        {ctaLabel}
 
                                         <span className="text-lg transition-transform duration-300">
                                             →
@@ -222,105 +198,32 @@ export default function Hero() {
 
                                 </div>
 
-                                {/* Sustainable */}
-                                <div className="border-t border-white/20 py-6">
+                                {philosophyItems.map((item, index) => (
+                                    <div
+                                        key={item.title}
+                                        className={`border-t border-white/20 py-6 ${index === philosophyItems.length - 1 ? "border-b" : ""}`}
+                                    >
 
-                                    <div className="flex items-start gap-5">
+                                        <div className="flex items-start gap-5">
 
-                                        <span className="text-sm font-medium text-[#0CC0DF]">
-                                            01
-                                        </span>
+                                            <span className="text-sm font-medium text-[#0CC0DF]">
+                                                {String(index + 1).padStart(2, "0")}
+                                            </span>
 
-                                        <div>
-                                            <h4 className="text-lg font-semibold uppercase tracking-wide">
-                                                Sustainable
-                                            </h4>
+                                            <div>
+                                                <h4 className="text-lg font-semibold uppercase tracking-wide">
+                                                    {item.title}
+                                                </h4>
 
-                                            <p className="mt-2 text-sm leading-6 text-white/60">
-                                                We focus on long-term solutions that
-                                                protect property value and create
-                                                lasting benefits for our clients.
-                                            </p>
+                                                <p className="mt-2 text-sm leading-6 text-white/60">
+                                                    {item.description}
+                                                </p>
+                                            </div>
+
                                         </div>
 
                                     </div>
-
-                                </div>
-
-                                {/* Solutions */}
-                                <div className="border-t border-white/20 py-6">
-
-                                    <div className="flex items-start gap-5">
-
-                                        <span className="text-sm font-medium text-[#0CC0DF]">
-                                            02
-                                        </span>
-
-                                        <div>
-                                            <h4 className="text-lg font-semibold uppercase tracking-wide">
-                                                Solutions
-                                            </h4>
-
-                                            <p className="mt-2 text-sm leading-6 text-white/60">
-                                                Every property is different. We provide
-                                                practical, professional solutions built
-                                                around your needs.
-                                            </p>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                {/* Visionary */}
-                                <div className="border-t border-white/20 py-6">
-
-                                    <div className="flex items-start gap-5">
-
-                                        <span className="text-sm font-medium text-[#0CC0DF]">
-                                            03
-                                        </span>
-
-                                        <div>
-                                            <h4 className="text-lg font-semibold uppercase tracking-wide">
-                                                Visionary
-                                            </h4>
-
-                                            <p className="mt-2 text-sm leading-6 text-white/60">
-                                                We look beyond today, combining experience
-                                                and forward-thinking ideas to shape better
-                                                outcomes.
-                                            </p>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                {/* Values */}
-                                <div className="border-y border-white/20 py-6">
-
-                                    <div className="flex items-start gap-5">
-
-                                        <span className="text-sm font-medium text-[#0CC0DF]">
-                                            04
-                                        </span>
-
-                                        <div>
-                                            <h4 className="text-lg font-semibold uppercase tracking-wide">
-                                                Values
-                                            </h4>
-
-                                            <p className="mt-2 text-sm leading-6 text-white/60">
-                                                Integrity, reliability, care and quality
-                                                guide every decision we make and every
-                                                relationship we build.
-                                            </p>
-                                        </div>
-
-                                    </div>
-
-                                </div>
+                                ))}
 
                             </FadeIn>
 

@@ -3,33 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "./FadeIn";
-import {
-    Building2,
-    ClipboardCheck,
-    CloudRain,
-    FenceIcon,
-} from "lucide-react";
+import { SERVICE_ICONS } from "../../../lib/icons";
 
-const services = [
-    {
-        title: "Property Maintenance & Preventative Care",
-        icon: Building2,
-    },
-    {
-        title: "Damage Mitigation & Protective Measures",
-        icon: FenceIcon,
-    },
-    {
-        title: "Property Claims & Resultant Damage Reinstatement",
-        icon: CloudRain,
-    },
-    {
-        title: "Maintenance Insurance Claims & Inspections",
-        icon: ClipboardCheck,
-    },
-];
+type HeroProps = {
+    eyebrow: string;
+    heading: string;
+    subheading: string;
+    description: string;
+    ctaLabel: string;
+    backgroundImage: { url: string; alt: string };
+    serviceItems: { label: string; icon: string }[];
+};
 
-export default function Hero() {
+export default function Hero({ eyebrow, heading, subheading, description, ctaLabel, backgroundImage, serviceItems }: HeroProps) {
     return (
         <section className="relative min-h-screen overflow-hidden bg-black text-white">
 
@@ -37,8 +23,8 @@ export default function Hero() {
             <div className="absolute inset-0">
 
                 <Image
-                    src="/services-hero.jpg"
-                    alt=""
+                    src={backgroundImage.url}
+                    alt={backgroundImage.alt}
                     fill
                     priority
                     className="object-cover"
@@ -76,23 +62,17 @@ export default function Hero() {
                         <div className="max-w-md">
 
                             <p className="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#0CC0DF]">
-                                Our Expertise
+                                {eyebrow}
                             </p>
 
                             <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
-                                Property management with a{" "}
-                                <span className="text-[#0CC0DF]">
-                                    difference.
-                                </span>
+                                {subheading}
                             </h2>
 
                             <div className="mt-6 h-px w-16 bg-[#0CC0DF]" />
 
                             <p className="mt-6 text-sm leading-7 text-white/65 sm:text-base">
-                                We manage properties with care, professionalism
-                                and a long-term vision. Our approach combines
-                                reliable service with practical solutions that
-                                protect your property and your investment.
+                                {description}
                             </p>
 
                             <Link
@@ -118,7 +98,7 @@ export default function Hero() {
                                     hover:shadow-[0_0_30px_rgba(12,192,223,0.35)]
                                 "
                             >
-                                GET IN TOUCH
+                                {ctaLabel}
 
                                 <span className="text-lg">
                                     →
@@ -154,14 +134,7 @@ export default function Hero() {
                                     xl:text-[8rem]
                                 "
                             >
-                                WE ARE AT
-                                <br />
-                                <span className="text-white">
-                                    YOUR SERVICE
-                                    <span className="text-[#0CC0DF]">
-                                        .
-                                    </span>
-                                </span>
+                                {heading}
                             </h1>
 
                         </div>
@@ -169,12 +142,12 @@ export default function Hero() {
                         {/* Service list */}
                         <div className="mt-12 max-w-xl border-t border-white/20">
 
-                            {services.map((service) => {
-                                const Icon = service.icon;
+                            {serviceItems.map((service) => {
+                                const Icon = SERVICE_ICONS[service.icon];
 
                                 return (
                                     <div
-                                        key={service.title}
+                                        key={service.label}
                                         className="
                                             group
                                             flex
@@ -192,20 +165,22 @@ export default function Hero() {
                                         <div className="flex items-center gap-5">
 
                                             {/* Icon */}
-                                            <Icon
-                                                size={21}
-                                                strokeWidth={1.7}
-                                                className="
-                                                    text-[#0CC0DF]
-                                                    transition-transform
-                                                    duration-300
-                                                    group-hover:scale-110
-                                                "
-                                            />
+                                            {Icon && (
+                                                <Icon
+                                                    size={21}
+                                                    strokeWidth={1.7}
+                                                    className="
+                                                        text-[#0CC0DF]
+                                                        transition-transform
+                                                        duration-300
+                                                        group-hover:scale-110
+                                                    "
+                                                />
+                                            )}
 
                                             {/* Service */}
                                             <span className="text-sm font-medium uppercase tracking-wide sm:text-base">
-                                                {service.title}
+                                                {service.label}
                                             </span>
 
                                         </div>

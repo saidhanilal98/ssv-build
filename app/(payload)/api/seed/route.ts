@@ -314,16 +314,18 @@ export async function GET() {
     data: {
       hero: {
         eyebrow: 'Let us talk property',
-        heading: 'CONTACT US.',
+        headingLine1: 'CONTACT',
+        headingLine2Highlighted: 'US.',
         tagline: 'Property advice and services when you need it.',
       },
       details: {
-        heading: 'Get In Touch.',
+        headingLine1: 'Get In',
+        headingLine2Highlighted: 'Touch.',
         description: 'Have a property that needs attention? Get in touch with our team and let us know how we can assist.',
         email: 'geet.ssvpropertygroup@gmail.com',
         phone: '+44 7918 351115',
         locationLines: [{ line: 'Milton Keynes' }, { line: 'London, United Kingdom' }],
-        mapQuery: 'London, United Kingdom',
+        mapQuery: 'Milton Keynes, United Kingdom',
       },
     },
   })
@@ -413,6 +415,7 @@ export async function GET() {
         },
       ],
       order: 4,
+      showOnHomePage: false,
     },
   })
 

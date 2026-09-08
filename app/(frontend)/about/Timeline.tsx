@@ -3,47 +3,21 @@
 import Image from "next/image";
 import FadeIn from "./FadeIn";
 
-const timeline = [
-    {
-        year: "2023",
-        title: "The Birth of SSV Property Group Ltd",
-        description:
-            "SSV Property Group Ltd was officially named and established to continue and modernize the family legacy in South Africa. The new brand united decades of expertise under one forward-thinking company, offering a proactive, structured, and high-standard approach to property services.",
-    },
-    {
-        year: "2023 (Continued)",
-        title: "Entering the UK Market",
-        description:
-            "Driven by a vision to bring our unique, generationally refined solution to the UK, we expanded our services to the British market. Here, we combined our proven methods from back home with a deep understanding of UK property standards, regulations, and client expectations.",
-    },
-    {
-        year: "2024",
-        title: "Local Expertise Meets Generational Skill",
-        description:
-            "With our UK base established, SSV began serving local landlords, homeowners, and tenents, offering the perfect blend. Years of perfected experience and the focused dedication of a local UK team.",
-    },
-    {
-        year: "2025",
-        title: "Continued Expansion & Proactive Property Care",
-        description:
-            "We continue refining our proactive property care model, building strong partnerships, and expanding our footprint across the UK all while staying true to the values built over four generations.",
-    },
-    {
-        year: "Today",
-        title: "Building The Future",
-        description:
-            "SSV continues to build on generations of experience while looking toward the future through sustainable solutions, visionary values and meaningful development.",
-    },
-];
+type TimelineProps = {
+    heading: string;
+    description: string;
+    backgroundImage: { url: string; alt: string };
+    events: { year: string; title: string; description: string }[];
+};
 
-export default function Timeline() {
+export default function Timeline({ heading, description, backgroundImage, events }: TimelineProps) {
     return (
         <section className="relative overflow-hidden text-white">
 
             {/* Background Image */}
             <Image
-                src="/timeline-background.jpg"
-                alt=""
+                src={backgroundImage.url}
+                alt={backgroundImage.alt}
                 fill
                 className="object-cover"
             />
@@ -77,17 +51,11 @@ export default function Timeline() {
                         </p>
 
                         <h1 className="text-5xl font-bold uppercase tracking-tight sm:text-6xl lg:text-8xl">
-                            OUR{" "}
-                            <span className="text-[#0CC0DF]">
-                                TIMELINE
-                            </span>
+                            {heading}
                         </h1>
 
                         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
-                            From our beginnings in construction to our vision
-                            for the future of property development, our journey
-                            has been shaped by experience, evolution and a
-                            commitment to creating lasting value.
+                            {description}
                         </p>
 
                     </div>
@@ -101,7 +69,7 @@ export default function Timeline() {
 
                     <div className="space-y-16 md:space-y-24">
 
-                        {timeline.map((item, index) => {
+                        {events.map((item, index) => {
                             const isLeft = index % 2 === 0;
 
                             return (
@@ -211,4 +179,3 @@ export default function Timeline() {
         </section>
     );
 }
-

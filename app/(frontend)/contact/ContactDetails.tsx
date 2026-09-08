@@ -3,7 +3,25 @@
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import FadeIn from "./FadeIn";
 
-export default function ContactDetails() {
+type ContactDetailsProps = {
+    headingLine1: string;
+    headingLine2Highlighted: string;
+    description: string;
+    email: string;
+    phone: string;
+    locationLines: string[];
+    mapQuery: string;
+};
+
+export default function ContactDetails({
+    headingLine1,
+    headingLine2Highlighted,
+    description,
+    email,
+    phone,
+    locationLines,
+    mapQuery,
+}: ContactDetailsProps) {
     return (
         <section className="relative overflow-hidden bg-[#F4F7F8] text-[#062133]">
 
@@ -39,10 +57,10 @@ export default function ContactDetails() {
                                 lg:text-6xl
                             "
                             >
-                                Get In
+                                {headingLine1}
                                 <br />
                                 <span className="text-[#0CC0DF]">
-                                    Touch.
+                                    {headingLine2Highlighted}
                                 </span>
                             </h2>
 
@@ -51,8 +69,7 @@ export default function ContactDetails() {
                         <div className="lg:col-span-5">
 
                             <p className="max-w-md text-base leading-7 text-black lg:ml-auto">
-                                Have a property that needs attention? Get in touch
-                                with our team and let us know how we can assist.
+                                {description}
                             </p>
 
                         </div>
@@ -104,7 +121,7 @@ export default function ContactDetails() {
 
                                 {/* Email */}
                                 <a
-                                    href="mailto:info@example.com"
+                                    href={`mailto:${email}`}
                                     className="
                                         group
                                         flex
@@ -146,7 +163,7 @@ export default function ContactDetails() {
                                         </p>
 
                                         <p className="break-all text-base text-white/80 transition-colors duration-300 group-hover:text-[#0CC0DF]">
-                                            geet.ssvpropertygroup@gmail.com
+                                            {email}
                                         </p>
 
                                     </div>
@@ -170,7 +187,7 @@ export default function ContactDetails() {
 
                                 {/* Phone */}
                                 <a
-                                    href="tel:+440000000000"
+                                    href={`tel:${phone.replace(/\s+/g, "")}`}
                                     className="
                                         group
                                         flex
@@ -212,7 +229,7 @@ export default function ContactDetails() {
                                         </p>
 
                                         <p className="text-base text-white/80 transition-colors duration-300 group-hover:text-[#0CC0DF]">
-                                            +44 7918 351115
+                                            {phone}
                                         </p>
 
                                     </div>
@@ -260,9 +277,12 @@ export default function ContactDetails() {
                                         </p>
 
                                         <p className="max-w-xs text-base leading-7 text-white/80">
-                                            Milton Keynes
-                                            <br />
-                                            London, United Kingdom
+                                            {locationLines.map((line, index) => (
+                                                <span key={line}>
+                                                    {index > 0 && <br />}
+                                                    {line}
+                                                </span>
+                                            ))}
                                         </p>
 
                                     </div>
@@ -313,7 +333,7 @@ export default function ContactDetails() {
                         {/* Google Maps Embed */}
                         <iframe
                             title="Our location"
-                            src="https://www.google.com/maps?q=London%2C%20United%20Kingdom&output=embed"
+                            src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`}
                             className="absolute inset-0 h-full w-full border-0 grayscale-[0.7] contrast-[1.05]"
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"

@@ -1,39 +1,15 @@
 "use client";
 
 import FadeIn from "./FadeIn";
+import type { CertificationItem } from "../../../lib/payload/content/certifications";
 
-const certifications = [
-    {
-        number: "01",
-        title: "Bronze Membership Certificate",
-        description:
-            "Our Bronze Membership Certificate demonstrates our commitment to professional standards and continued development.",
-        link: "https://ssvpropertygroup.co.uk/wp-content/uploads/2026/06/Bronze-1.pdf",
-    },
-    {
-        number: "02",
-        title: "Health & Safety Certificate",
-        description:
-            "Recognition of our commitment to maintaining strong health and safety standards across our operations.",
-        link: "https://ssvpropertygroup.co.uk/wp-content/uploads/2026/06/Once_For_All_Health_Safety_-_SSIP_-2.pdf",
-    },
-    {
-        number: "03",
-        title: "Social Value Certificate",
-        description:
-            "Reflecting our commitment to creating positive social impact and delivering value within the communities we serve.",
-        link: "https://ssvpropertygroup.co.uk/wp-content/uploads/2026/06/Social_Value-2.pdf",
-    },
-    {
-        number: "04",
-        title: "Liability Insurance Policy",
-        description:
-            "Confirmation of our professional insurance coverage and commitment to protecting our clients and projects.",
-        link: "https://ssvpropertygroup.co.uk/wp-content/uploads/2026/06/TO-WHOM-IT-MAY-CONCERN-TL-1.pdf",
-    },
-];
+type CertificationsProps = {
+    heading: string;
+    description: string;
+    certifications: CertificationItem[];
+};
 
-export default function Certifications() {
+export default function Certifications({ heading, description, certifications }: CertificationsProps) {
     return (
         <section className="relative overflow-hidden bg-[#062133] text-white">
 
@@ -67,17 +43,14 @@ export default function Certifications() {
                                 lg:text-8xl
                             "
                         >
-                            CERTIFICATIONS{" "}
+                            {heading}{" "}
                             <span className="text-[#0CC0DF]">
                                 .
                             </span>
                         </h1>
 
                         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
-                            Our certifications and supporting documentation
-                            reflect our commitment to professional standards,
-                            safety, social responsibility and protecting the
-                            interests of our clients.
+                            {description}
                         </p>
 
                     </div>
@@ -86,8 +59,8 @@ export default function Certifications() {
                 {/* Certifications */}
                 <div className="mt-20 grid grid-cols-1 gap-px border border-white/10 bg-white/10 md:grid-cols-2">
 
-                    {certifications.map((certificate) => (
-                        <FadeIn key={certificate.number}>
+                    {certifications.map((certificate, index) => (
+                        <FadeIn key={certificate.title}>
 
                             <div
                                 className="
@@ -109,7 +82,7 @@ export default function Certifications() {
                                 <div className="flex items-start justify-between">
 
                                     <span className="text-sm font-medium text-[#0CC0DF]">
-                                        {certificate.number}
+                                        {String(index + 1).padStart(2, "0")}
                                     </span>
 
                                 </div>
@@ -130,37 +103,60 @@ export default function Certifications() {
                                 </div>
 
                                 {/* Button */}
-                                <a
-                                    href={certificate.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="
-                                        mt-10
-                                        inline-flex
-                                        w-fit
-                                        items-center
-                                        gap-3
-                                        border
-                                        border-[#0CC0DF]
-                                        px-6
-                                        py-4
-                                        text-sm
-                                        font-medium
-                                        uppercase
-                                        tracking-wide
-                                        text-white
-                                        transition-all
-                                        duration-300
-                                        hover:bg-[#0CC0DF]
-                                        hover:text-black
-                                    "
-                                >
-                                    View Certificate
+                                {certificate.documentUrl ? (
+                                    <a
+                                        href={certificate.documentUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="
+                                            mt-10
+                                            inline-flex
+                                            w-fit
+                                            items-center
+                                            gap-3
+                                            border
+                                            border-[#0CC0DF]
+                                            px-6
+                                            py-4
+                                            text-sm
+                                            font-medium
+                                            uppercase
+                                            tracking-wide
+                                            text-white
+                                            transition-all
+                                            duration-300
+                                            hover:bg-[#0CC0DF]
+                                            hover:text-black
+                                        "
+                                    >
+                                        View Certificate
 
-                                    <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
-                                        →
+                                        <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+                                            →
+                                        </span>
+                                    </a>
+                                ) : (
+                                    <span
+                                        className="
+                                            mt-10
+                                            inline-flex
+                                            w-fit
+                                            items-center
+                                            gap-3
+                                            border
+                                            border-white/20
+                                            px-6
+                                            py-4
+                                            text-sm
+                                            font-medium
+                                            uppercase
+                                            tracking-wide
+                                            text-white/40
+                                        "
+                                    >
+                                        Document Coming Soon
                                     </span>
-                                </a>
+                                )}
 
                             </div>
 

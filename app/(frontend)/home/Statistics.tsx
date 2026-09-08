@@ -61,34 +61,28 @@ function Counter({
     );
 }
 
-export default function Statistics() {
+const BG_CLASSES = ["bg-[#0CC0DF] text-black", "bg-white text-black", "bg-[#062133] text-white"];
+
+type StatisticsProps = {
+    statistics: { value: number; suffix: string; label: string }[];
+};
+
+export default function Statistics({ statistics }: StatisticsProps) {
     return (
         <section className="bg-black text-white">
             <div className="grid w-full grid-cols-1 md:grid-cols-3">
 
-                {/* Statistic 1 */}
-                <div className="flex min-h-[280px] flex-col justify-center bg-[#0CC0DF] px-10 py-16 text-center text-black md:text-left">
-                    <Counter target={30} />
-                    <p className="mt-4 text-medium font-medium italic tracking-wide">
-                        Years of Sustainable Success
-                    </p>
-                </div>
-
-                {/* Statistic 2 */}
-                <div className="flex min-h-[280px] flex-col justify-center bg-white px-10 py-16 text-center text-black md:text-left">
-                    <Counter target={1200} suffix="+" />
-                    <p className="mt-4 text-medium font-medium italic tracking-wide">
-                        Successful Projects Completed
-                    </p>
-                </div>
-
-                {/* Statistic 3 */}
-                <div className="flex min-h-[280px] flex-col justify-center bg-[#062133] px-10 py-16 text-center text-white md:text-left">
-                    <Counter target={30} suffix="+" />
-                    <p className="mt-4 text-medium font-medium italic tracking-wide">
-                        Years of Experience
-                    </p>
-                </div>
+                {statistics.map((statistic, index) => (
+                    <div
+                        key={statistic.label}
+                        className={`flex min-h-[280px] flex-col justify-center px-10 py-16 text-center md:text-left ${BG_CLASSES[index % BG_CLASSES.length]}`}
+                    >
+                        <Counter target={statistic.value} suffix={statistic.suffix} />
+                        <p className="mt-4 text-medium font-medium italic tracking-wide">
+                            {statistic.label}
+                        </p>
+                    </div>
+                ))}
 
             </div>
         </section>

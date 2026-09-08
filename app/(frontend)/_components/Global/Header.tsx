@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About Us" },
-    { href: "/services", label: "Services" },
-];
+type HeaderProps = {
+    logo: { url: string; alt: string };
+    navLinks: { href: string; label: string }[];
+    ctaLabel: string;
+};
 
-export default function Header() {
+export default function Header({ logo, navLinks, ctaLabel }: HeaderProps) {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -50,8 +50,8 @@ export default function Header() {
                     onClick={() => setOpen(false)}
                 >
                     <Image
-                        src="/ssv-logo.webp"
-                        alt="SSV Logo"
+                        src={logo.url}
+                        alt={logo.alt}
                         width={165}
                         height={55}
                         priority
@@ -125,7 +125,7 @@ export default function Header() {
               hover:bg-white
             "
                     >
-                        Contact Us
+                        {ctaLabel}
                     </Link>
                 </div>
 
@@ -234,7 +234,7 @@ export default function Header() {
               hover:bg-white
             "
                     >
-                        Contact Us
+                        {ctaLabel}
                     </Link>
                 </div>
             </div>

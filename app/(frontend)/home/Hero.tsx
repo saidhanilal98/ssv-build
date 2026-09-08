@@ -2,14 +2,30 @@
 
 import Image from "next/image";
 
-export default function Hero() {
+type HeroProps = {
+    headingLine1: string;
+    headingLine2Highlighted: string;
+    subheading: string;
+    paragraphs: string[];
+    ctaLabel: string;
+    backgroundImage: { url: string; alt: string };
+};
+
+export default function Hero({
+    headingLine1,
+    headingLine2Highlighted,
+    subheading,
+    paragraphs,
+    ctaLabel,
+    backgroundImage,
+}: HeroProps) {
     return (
         <section className="relative min-h-screen overflow-hidden bg-black text-white">
 
             {/* Background */}
             <Image
-                src="/home-hero-background.jpg"
-                alt=""
+                src={backgroundImage.url}
+                alt={backgroundImage.alt}
                 fill
                 priority
                 className="object-cover"
@@ -78,10 +94,10 @@ export default function Hero() {
                             xl:text-[8rem]
                           "
                         >
-                            YOUR VISION.
+                            {headingLine1}
                             <br />
                             <span className="text-[#0CC0DF]">
-                                EXPERTLY BUILT.
+                                {headingLine2Highlighted}
                             </span>
                         </h1>
                     </div>
@@ -98,60 +114,26 @@ export default function Hero() {
                             lg:text-4xl
                           "
                         >
-                            Sustainable Solutions{" "}
-                            <span className="text-[#0CC0DF]">|</span>{" "}
-                            Visionary Values
+                            {subheading}
                         </h2>
 
                         <div className="mt-6 h-px w-16 bg-[#0CC0DF]" />
 
-                        <p
-                            className="
-                            mt-6
-                            max-w-lg
-                            text-sm
-                            leading-7
-                            text-white
-                            sm:text-base
-                          "
-                        >
-                            At SSV Property Group Ltd, we do more than manage and
-                            maintain properties. We build strong client relationships
-                            and protect long-term investments.
-                        </p>
-
-                        <p
-                            className="
-                            mt-4
-                            max-w-lg
-                            text-sm
-                            leading-7
-                            text-white
-                            sm:text-base
-                          "
-                        >
-                            Guided by integrity, reliability, and attention to detail,
-                            we treat every property with the highest level of care.
-                            Our team delivers professional, responsive service with a
-                            personal touch, ensuring your property is maintained to the
-                            highest standards and your peace of mind always comes first.
-                        </p>
-
-                        <p
-                            className="
-                            mt-4
-                            max-w-lg
-                            text-sm
-                            leading-7
-                            text-white
-                            sm:text-base
-                          "
-                        >
-                            Begin your project with confidence. Our team supports you
-                            throughout the entire journey, allowing you to enjoy a
-                            stress-free experience while we expertly manage and deliver
-                            your desired project.
-                        </p>
+                        {paragraphs.map((paragraph, index) => (
+                            <p
+                                key={index}
+                                className="
+                                mt-4
+                                max-w-lg
+                                text-sm
+                                leading-7
+                                text-white
+                                sm:text-base
+                              "
+                            >
+                                {paragraph}
+                            </p>
+                        ))}
 
                         {/* CTA */}
                         <a
@@ -177,7 +159,7 @@ export default function Hero() {
                             hover:shadow-[0_0_30px_rgba(12,192,223,0.35)]
                           "
                         >
-                            GET STARTED
+                            {ctaLabel}
                         </a>
                     </div>
                 </div>

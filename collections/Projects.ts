@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTagsAfterChange } from '../lib/payload/revalidate'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -8,6 +9,9 @@ export const Projects: CollectionConfig = {
   },
   versions: {
     drafts: true,
+  },
+  hooks: {
+    afterChange: [revalidateTagsAfterChange(['projects'])],
   },
   fields: [
     { name: 'title', type: 'text' },

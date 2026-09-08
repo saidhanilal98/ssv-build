@@ -2,68 +2,18 @@
 
 import { useState } from "react";
 import FadeIn from "./FadeIn";
+import type { ServiceItem } from "../../../lib/payload/content/services";
 
-const services = [
-    {
-        number: "01",
-        title: "Property Maintenance & Preventative Care",
-        short: "Planned and reactive maintenance to keep properties safe, functional, and well maintained.",
-        description:
-            "Ongoing maintenance is paramount to responsible property ownership and plays an important role in reducing the risk of damage and deterioration. We offer planned and reactive property maintenance services to help keep buildings in good condition, address issues early, and reduce the likelihood of preventable problems escalating.",
-        features: [
-            "General property repairs and upkeep.",
-            "Identification and rectification of minor defects.",
-            "Preventative works to reduce water ingress and deterioration.",
-            "Ongoing maintenance support for landlords and property owners.",
-            "Records of maintenance and repair works carried out.",
-        ],
-    },
-    {
-        number: "02",
-        title: "Damage Mitigation & Protective Measures",
-        short: "Prompt damage mitigation to limit further damage, protect your property, and reduce costly repairs.",
-        description:
-            "Early intervention can significantly reduce the extent and cost of property damage. We provide damage mitigation services to prevent minor issues from becoming major repairs. Where appropriate, we can attend site promptly to assess the situation and carry out practical measures to limit further damage and protect the property.",
-        features: [
-            "Making the property safe following an incident.",
-            "Temporary isolation and protection works.",
-            "Moisture control and drying measures.",
-            "Removal of affected materials where necessary.",
-            "Preventative actions to stop further deterioration.",
-        ],
-    },
-    {
-        number: "03",
-        title: "Property Claims & Resultant Damage Reinstatement",
-        short: "Professional damage assessment and reinstatement services to accurately identify, report, and restore property damage.",
-        description:
-            "We provide a professional damage assessment and reinstatement service. Our role is to support the claims process by accurately assessing damage, preparing repair reports and quotations, and delivering reinstatement works. We work collaboratively with insurers and appointed loss adjusters to ensure all resultant damage is properly identified and addressed.",
-        features: [
-            "Assessing and documenting resultant damage.",
-            "Preparing detailed repair reports and scopes of works.",
-            "Providing clear and transparent repair quotations.",
-            "Liaising with appointed loss adjusters where required.",
-            "Managing and completing reinstatement works.",
-        ],
-    },
-    {
-        number: "04",
-        title: "Maintenance Insurance Claims & Inspections",
-        short: "Property management focused on inspections, maintenance, safety, and keeping your property in excellent condition.",
-        description:
-            "We provide hands-on property management focused on maintenance, inspections, and ensuring your property remains safe, compliant, and well maintained at all times. Our services do not include rent collection or tenant financial management. We specialize in physical care of your property, managing inspections and overseeing maintenance works professionally.",
-        features: [
-            "We carry out regular property inspections, routine maintenance, and urgent repairs.",
-            "Identifying issues early and resolving them quickly to protect your property and reduce long-term costs.",
-            "We offer flexible monthly maintenance packages tailored to your property’s needs.",
-            "Providing clear and transparent repair quotations.",
-            "These include regular inspections, preventative maintenance, and prompt repairs, helping identify issues early, reduce unexpected costs, and protect your investment.",
-        ],
-    },
-];
+type PropManagementServicesProps = {
+    heading: string;
+    description: string;
+    services: ServiceItem[];
+};
 
-export default function Services() {
+export default function PropManagementServices({ heading, description, services }: PropManagementServicesProps) {
     const [activeService, setActiveService] = useState(0);
+
+    if (services.length === 0) return null;
 
     const service = services[activeService];
 
@@ -115,16 +65,11 @@ export default function Services() {
                                 lg:text-8xl
                             "
                         >
-                            PROPERTY{" "}
-                            <span className="text-[#0CC0DF]">
-                                MANAGEMENT SERVICES
-                            </span>
+                            {heading}
                         </h1>
 
                         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
-                            Professional property management solutions
-                            designed to protect your investment, maintain
-                            your property and deliver lasting value.
+                            {description}
                         </p>
 
                     </div>
@@ -140,10 +85,11 @@ export default function Services() {
 
                             {services.map((item, index) => {
                                 const active = index === activeService;
+                                const number = String(index + 1).padStart(2, "0");
 
                                 return (
                                     <button
-                                        key={item.number}
+                                        key={item.title}
                                         type="button"
                                         onClick={() => setActiveService(index)}
                                         className={`
@@ -178,7 +124,7 @@ export default function Services() {
                                                     }
                                                 `}
                                             >
-                                                {item.number}
+                                                {number}
                                             </span>
 
                                             <div>
@@ -197,7 +143,7 @@ export default function Services() {
                                                         }
                                                     `}
                                                 >
-                                                    {item.short}
+                                                    {item.shortDescription}
                                                 </p>
 
                                             </div>
@@ -259,7 +205,7 @@ export default function Services() {
                                     text-white/[0.025]
                                 "
                             >
-                                {service.number}
+                                {String(activeService + 1).padStart(2, "0")}
                             </div>
 
                             {/* Top */}
@@ -270,7 +216,7 @@ export default function Services() {
                                     <span className="h-px w-10 bg-[#0CC0DF]" />
 
                                     <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#0CC0DF]">
-                                        Service {service.number}
+                                        Service {String(activeService + 1).padStart(2, "0")}
                                     </span>
 
                                 </div>
@@ -402,4 +348,3 @@ export default function Services() {
         </section>
     );
 }
-

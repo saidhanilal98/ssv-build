@@ -1,11 +1,14 @@
 import Hero from "../contact/Hero";
 import ContactDetails from "../contact/ContactDetails";
+import { getContactPageContent } from "../../../lib/payload/content/contact";
 
-export default function Home() {
+export default async function Home() {
+    const content = await getContactPageContent();
+
     return (
         <main>
-            <Hero />
-            <ContactDetails />
+            <Hero {...content.hero} />
+            <ContactDetails {...content.details} />
         </main>
 
     );
